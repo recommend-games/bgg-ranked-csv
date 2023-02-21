@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+    bgg:
+        image: registry.gitlab.com/recommend.games/bgg-ranked-csv:0.0.1
+        container_name: bgg-ranked-csv
+        build: '.'
+        env_file: .env
+        volumes:
+            - ../bgg-ranking-historicals:/data/bgg-ranking-historicals
