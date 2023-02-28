@@ -12,6 +12,7 @@ mkdir --parents "${DATA_DIR}"
 
 echo "Fetch BGG rankings and write results to <${DATA_DIR}/${OUTPUT_FILE}>"
 cd "${SOURCE_DIR}"
+source '.env' || echo 'Unable to read .env'
 ./bgg-ranked-csv > "${DATA_DIR}/${OUTPUT_FILE}"
 echo "Done fetching."
 
