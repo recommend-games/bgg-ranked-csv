@@ -1,11 +1,18 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-set -e
+set -euo pipefail
 
+SAVE_DIR="$(pwd)"
+SOURCE_DIR="$(dirname "$(readlink --canonicalize "${BASH_SOURCE[0]}")")"
+# TODO make argument
+DATA_DIR="$(readlink --canonicalize "${SOURCE_DIR}/../bgg-ranking-historicals")"
 OUTPUT_FILE="$(date --utc '+%Y-%m-%dT%H-%M-%S').csv"
-SOURCE_DIR='/data/bgg-ranking-historicals'
 
-mkdir -p "${SOURCE_DIR}"
+mkdir --parents "${DATA_DIR}"
 
 cd "${SOURCE_DIR}"
-bgg-ranked-csv > "${OUTPUT_FILE}"
+echo "Fetch BGG rankings and write results to <${DATA_DIR}/${OUTPUT_FILE}>"
+./bgg-ranked-csv > "${DATA_DIR}/${OUTPUT_FILE}"
+echo "Done fetching."
+
+cd "${SAVE_DIR}"
