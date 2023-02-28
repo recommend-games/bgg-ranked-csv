@@ -13,8 +13,8 @@ RUN apt-get update && apt-get install -y \
 COPY go.mod go.sum ./
 RUN go mod download
 COPY *.go ./
-RUN go build -o /usr/local/bin/bgg-ranked-csv
+RUN go build
 
-COPY bgg-ranked-csv.sh /usr/local/bin/bgg-ranked-csv.sh
+COPY bgg-ranked-csv.sh ./
 
-CMD [ "bgg-ranked-csv.sh" ]
+CMD [ "/app/bgg-ranked-csv.sh" ]
