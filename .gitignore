@@ -2,3 +2,4 @@ bgg-ranked-csv
 *.csv
 data
 .env
+logs/
