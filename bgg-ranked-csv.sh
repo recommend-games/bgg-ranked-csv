@@ -3,12 +3,12 @@
 set -euo pipefail
 
 SAVE_DIR="$(pwd)"
-SOURCE_DIR="$(dirname "$(readlink --canonicalize "${BASH_SOURCE[0]}")")"
+SOURCE_DIR="${HOME}/Recommend.Games/bgg-ranked-csv"
 # TODO make argument
-DATA_DIR="$(readlink --canonicalize "${SOURCE_DIR}/../bgg-ranking-historicals")"
-OUTPUT_FILE="$(date --utc '+%Y-%m-%dT%H-%M-%S').csv"
+DATA_DIR="${HOME}/Recommend.Games/bgg-ranking-historicals"
+OUTPUT_FILE="$(date -u '+%Y-%m-%dT%H-%M-%S').csv"
 
-mkdir --parents "${DATA_DIR}"
+mkdir -p "${DATA_DIR}"
 
 echo "Fetch BGG rankings and write results to <${DATA_DIR}/${OUTPUT_FILE}>"
 cd "${SOURCE_DIR}"
